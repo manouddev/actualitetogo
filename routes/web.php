@@ -1,5 +1,9 @@
 <?php
+use App\Http\Controllers\Api\Web\Authentication\ForgotPasswordController;
+use App\Http\Controllers\Api\Web\Authentication\LoginController;
+use App\Http\Controllers\Api\Web\Authentication\RegisterController;
 use App\Http\Controllers\Api\Web\Frontoffice\OneSlugController;
+use App\Http\Controllers\Api\Web\Backoffice\WebRouteController;
 use App\Http\Controllers\Api\Web\Frontoffice\HomeController;
 
 use Illuminate\Support\Facades\Route;
@@ -30,3 +34,20 @@ Route::get('/tags/{slug}', [OneSlugController::class, 'tags']);
 //La route pour les auteurs
 
 Route::get('/auteurs/{slug}', [OneSlugController::class, 'authors']);
+
+//les routes pour l'authentification
+
+Route::get('/auth/login', [LoginController::class, 'login']);
+
+Route::get('/auth/register', [RegisterController::class, 'register']);
+
+Route::get('/auth/forgot_password', [ForgotPasswordController::class, 'forgot_password']);
+
+//Les routes pour les administrateurs
+
+Route::get('/admin/dashboard',[WebRouteController::class, 'administrateur']);
+
+
+//Les routes pour les publicateurs
+
+Route::get('/pub/dashboard',[WebRouteController::class, 'publicateur']);
