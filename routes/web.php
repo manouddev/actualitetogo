@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\Api\Web\Frontoffice\HomeController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//La route pour la page d'accueil
+
+Route::get('/', [HomeController::class, 'home'] );
