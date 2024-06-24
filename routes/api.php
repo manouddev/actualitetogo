@@ -7,6 +7,8 @@ use App\Http\Controllers\Api\Web\Authentication\LoginController;
 use App\Http\Controllers\Api\Web\Authentication\LogoutController;
 use App\Http\Controllers\Api\Web\Authentication\ProfileController;
 
+use App\Http\Controllers\Api\Web\Frontoffice\UserActionAuthController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,7 +45,11 @@ Route::get('/frontoffice/footer/tags_populars', [IncludesController::class, 'tag
 Route::get('/frontoffice/footer/category_populars', [IncludesController::class, 'categoryRequestData']);
 
 Route::get('/frontoffice/footer/articles_populars', [IncludesController::class, 'publicationsRequestData']);
- 
+
+//Gestion d'envoi de message sans connexion de l'utilisateur
+
+Route::post('/home/contact', [IncludesController::class, 'submitContact']);
+
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
 
     //Gestion du système de mot de passe oublié
@@ -76,6 +82,9 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
 
     Route::get('role', [ProfileController::class, 'getRole'])->middleware('auth:api');
 
+    //Gestion d'envoi de message avec connexion de l'utilisateur
+
+    Route::post('/home/contact_auth', [UserActionAuthController::class, 'submitContactAuth'])->middleware('auth:api');
     
 });
 

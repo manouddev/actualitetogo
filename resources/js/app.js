@@ -95,7 +95,21 @@ const tagsPopulars = createApp(tagsPopularsFooter)
 tagsPopulars.use(store)
 
 tagsPopulars.mount('#tagsPopulars')
-  
+
+//Importation du Composant de contact à afficher sur la page d'accueil
+
+import ContactF from './components/frontoffice/home_page/contact.vue'
+
+const contact = createApp(ContactF)
+
+contact.use(VueSweetalert2);
+
+contact.use(store);
+
+contact.mount('#contact')
+ 
+//Gestion de tous les composants administrateurs
+
 import * as adminRouter from './router/adminRouter';
 
 import administrateurA from './components/backoffice/administrateur/administrateur.vue'
@@ -125,7 +139,7 @@ administrateur.component('accessUnAuthorizedAdmin', accessUnAuthorizedAdminCompo
 administrateur.component('sessionExpiredMessageAdmin', sessionExpiredMessageAdminComponent)
 
 administrateur.use(VueSweetalert2)
- 
+
 administrateur.use(store)
 
 administrateur.mount('#administrateur')

@@ -23,6 +23,10 @@ import articlesPopularsModule from './modules/frontoffice/footer/articlesPopular
 import categoryPopularsModule from './modules/frontoffice/footer/categoryPopulars'
 
 import tagsPopularsModule from './modules/frontoffice/footer/tagsPopulars'
+ 
+//Importation du module gérant les données d'envoi de messages
+
+import contactModule from "./modules/frontoffice/home_page/contact"
   
 //Le fonctionnalités pour l'authentification
 
@@ -58,7 +62,12 @@ const store = createStore({
         articlesPopulars: articlesPopularsModule,
         categoryPopulars: categoryPopularsModule,
         tagsPopulars: tagsPopularsModule,
-  
+ 
+        //Déclaration du module gérant les données d'envoi des messages
+
+        contact: contactModule,
+ 
+        
         //Déclaration des modules gérant les données du système d'authenitification
 
         login: loginModule,
