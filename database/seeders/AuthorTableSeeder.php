@@ -26,6 +26,11 @@ class AuthorTableSeeder extends Seeder
                 'wp_author_id' => 1,
                 'user_id' => 1,
                 'date_publish' =>  now(),
+                'description' => "<p>
+                    Nous tenons à rappeler aux visiteurs du site que
+                    sans partenariat avec togoactualite.com, la reprise des articles même partielle est strictement interdite.
+                    Tout contrevenant s'expose à de graves poursuites.
+                </p>"
             ], // 1
             [
                 'nom' => 'MIKANDO',
@@ -38,6 +43,11 @@ class AuthorTableSeeder extends Seeder
                 'wp_author_id' => 2,
                 'user_id' => 1,
                 'date_publish' =>  now(),
+                'description' => "<p>
+                    Nous tenons à rappeler aux visiteurs du site que
+                    sans partenariat avec togoactualite.com, la reprise des articles même partielle est strictement interdite.
+                    Tout contrevenant s'expose à de graves poursuites.
+                </p>"
             ], // 0
         ];
 

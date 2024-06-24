@@ -27,7 +27,7 @@ class IncludesController extends BaseController
     */
     public function togoActualiteRequestData(){
 
-        $togoactualiteDataCount = Publication::where("publications.status", 1)->where("publications.type_publication_id", 1)->where("publications.category_id", 34)->count();
+        $togoactualiteDataCount = Publication::where("status", 1)->where("type_publication_id", 1)->where("category_id", 34)->count();
 
         if($togoactualiteDataCount === 0){
 
@@ -35,14 +35,16 @@ class IncludesController extends BaseController
 
         }else if ($togoactualiteDataCount !== 0){
 
-            $togoactualiteData = Publication::select(array("publications.id", "publications.content", "publications.truncate_content","publications.title", "publications.slug", "publications.date_publish" ,"publications.author_name", "publications.author_slug","publications.og_file_url"))
-            ->where("publications.status", 1)
-            ->where("publications.category_id", 34)
-            ->orWhere("publications.category_id", 1)
-            ->orWhere("publications.category_id", 2)
-            ->orWhere("publications.category_id", 26)
-            ->orWhere("publications.category_id", 33)
-            ->orderBy('publications.date_publish', 'desc')
+            $togoactualiteData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
+            ->where(function ($query) {
+                $query->where("status", 1);
+            })->where(function ($query) {
+                $query->where("category_id", 34)
+                ->orWhere("category_id", 1)
+                ->orWhere("category_id", 2)
+                ->orWhere("category_id", 26)
+                ->orWhere("category_id", 33);
+            })->orderBy('date_publish', 'desc')
             ->take(4)
             ->get();
 
@@ -68,7 +70,7 @@ class IncludesController extends BaseController
      */
     public function rubriquesRequestData(){
 
-        $rubriquesDataCount = Publication::where("publications.status", 1)->where("publications.type_publication_id", 1)->where("publications.category_id", 27)->count();
+        $rubriquesDataCount = Publication::where("status", 1)->where("type_publication_id", 1)->where("category_id", 27)->count();
 
         if($rubriquesDataCount === 0){
 
@@ -76,10 +78,12 @@ class IncludesController extends BaseController
 
         }else if ($rubriquesDataCount !== 0){
 
-            $rubriquesData = Publication::select(array("publications.id", "publications.content", "publications.truncate_content","publications.title", "publications.slug", "publications.date_publish" ,"publications.author_name", "publications.author_slug","publications.og_file_url"))
-            ->where("publications.status", 1)
-            ->where("publications.category_id", 25)
-            ->orderBy('publications.date_publish', 'desc')
+            $rubriquesData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
+            ->where(function ($query) {
+                $query->where("status", 1);
+            })->where(function ($query) {
+                $query->where("category_id", 25);
+            })->orderBy('date_publish', 'desc')
             ->take(4)
             ->get();
 
@@ -103,7 +107,7 @@ class IncludesController extends BaseController
      */
     public function economieRequestData(){
 
-        $economieDataCount = Publication::where("publications.status", 1)->where("publications.type_publication_id", 1)->where("publications.category_id", 11)->count();
+        $economieDataCount = Publication::where("status", 1)->where("type_publication_id", 1)->where("category_id", 11)->count();
 
         if($economieDataCount === 0){
 
@@ -111,10 +115,12 @@ class IncludesController extends BaseController
 
         }else if ($economieDataCount !== 0){
 
-            $economieData = Publication::select(array("publications.id", "publications.content", "publications.truncate_content","publications.title", "publications.slug", "publications.date_publish" ,"publications.author_name", "publications.author_slug","publications.og_file_url"))
-            ->where("publications.status", 1)
-            ->where("publications.category_id", 11)
-            ->orderBy('publications.date_publish', 'desc')
+            $economieData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
+            ->where(function ($query) {
+                $query->where("status", 1);
+            })->where(function ($query) {
+                $query->where("category_id", 11);
+            })->orderBy('date_publish', 'desc')
             ->take(4)
             ->get();
 
@@ -141,7 +147,7 @@ class IncludesController extends BaseController
 
     public function diasporaRequestData(){
 
-        $diasporaDataCount = Publication::where("publications.status", 1)->where("publications.type_publication_id", 1)->where("publications.category_id", 9)->count();
+        $diasporaDataCount = Publication::where("status", 1)->where("type_publication_id", 1)->where("category_id", 9)->count();
 
         if($diasporaDataCount === 0){
 
@@ -149,10 +155,12 @@ class IncludesController extends BaseController
 
         }else if ($diasporaDataCount !== 0){
 
-            $diasporaData = Publication::select(array("publications.id", "publications.content", "publications.truncate_content","publications.title", "publications.slug", "publications.date_publish" ,"publications.author_name", "publications.author_slug","publications.og_file_url"))
-            ->where("publications.status", 1)
-            ->where("publications.category_id", 9)
-            ->orderBy('publications.date_publish', 'desc')
+            $diasporaData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
+            ->where(function ($query) {
+                $query->where("status", 1);
+            })->where(function ($query) {
+                $query->where("category_id", 9);
+            })->orderBy('date_publish', 'desc')
             ->take(4)
             ->get();
 
@@ -179,7 +187,7 @@ class IncludesController extends BaseController
 
     public function internationalRequestData(){
 
-        $internationalDataCount = Publication::where("publications.status", 1)->where("publications.type_publication_id", 1)->where("publications.category_id", 19)->count();
+        $internationalDataCount = Publication::where("status", 1)->where("type_publication_id", 1)->where("category_id", 19)->count();
 
         if($internationalDataCount === 0){
 
@@ -187,10 +195,13 @@ class IncludesController extends BaseController
 
         }else if ($internationalDataCount !== 0){
 
-            $internationalData = Publication::select(array("publications.id", "publications.content", "publications.truncate_content","publications.title", "publications.slug", "publications.date_publish" ,"publications.author_name", "publications.author_slug","publications.og_file_url"))
-            ->where("publications.status", 1)
-            ->where("publications.category_id", 19)
-            ->orderBy('publications.date_publish', 'desc')
+            $internationalData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
+            ->where(function ($query) {
+                $query->where("status", 1);
+            })->where(function ($query) {
+                $query->where("category_id", 19);
+            })->orderBy('date_publish', 'desc')
+            ->orderBy('date_publish', 'desc')
             ->take(4)
             ->get();
 
@@ -216,7 +227,7 @@ class IncludesController extends BaseController
      */
     public function sportsRequestData(){
 
-        $sportsDataCount = Publication::where("publications.status", 1)->where("publications.type_publication_id", 1)->where("publications.category_id", 30)->count();
+        $sportsDataCount = Publication::where("status", 1)->where("type_publication_id", 1)->where("category_id", 30)->count();
 
         if($sportsDataCount === 0){
 
@@ -224,10 +235,13 @@ class IncludesController extends BaseController
 
         }else if ($sportsDataCount !== 0){
 
-            $sportsData = Publication::select(array("publications.id", "publications.content", "publications.truncate_content","publications.title", "publications.slug", "publications.date_publish" ,"publications.author_name", "publications.author_slug","publications.og_file_url"))
-            ->where("publications.status", 1)
-            ->where("publications.category_id", 30)
-            ->orderBy('publications.date_publish', 'desc')
+            $sportsData = Publication::select(array("id", "content", "truncate_content","title", "slug", "date_publish" ,"author_name", "author_slug","og_file_url"))
+            ->where(function ($query) {
+                $query->where("status", 1);
+            })->where(function ($query) {
+                $query->where("category_id", 30);
+            })->orderBy('date_publish', 'desc')
+            ->orderBy('date_publish', 'desc')
             ->take(4)
             ->get();
 
@@ -345,7 +359,7 @@ class IncludesController extends BaseController
      */
     public function publicationsRequestData(){
 
-        $publications = Publication::where('status', 1)->where("publications.type_publication_id", 1)->whereDate('date_publish', '>', '2022-12-31')->orderBy('views_count', 'desc')->take(2)->get();
+        $publications = Publication::where('status', 1)->where("type_publication_id", 1)->whereDate('date_publish', '>', '2022-12-31')->orderBy('views_count', 'desc')->take(2)->get();
 
         return $this->sendResponse(['publicationsPopularsData' => $publications, 'status' => 200], 'les publications populaires');
 
