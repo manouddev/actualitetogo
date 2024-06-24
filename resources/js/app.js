@@ -95,4 +95,137 @@ const tagsPopulars = createApp(tagsPopularsFooter)
 tagsPopulars.use(store)
 
 tagsPopulars.mount('#tagsPopulars')
+  
+import * as adminRouter from './router/adminRouter';
+
+import administrateurA from './components/backoffice/administrateur/administrateur.vue'
+
+import HeaderAdminComponent from './components/backoffice/administrateur/includes/HeaderAdminComponent.vue'
+
+import FooterAdminComponent from './components/backoffice/administrateur/includes/FooterComponent.vue'
+
+import authRequiredMessageAdminComponent from './components/backoffice/administrateur/errorMessage/sections/authRequiredMessage.vue'
+
+import sessionExpiredMessageAdminComponent from './components/backoffice/administrateur/errorMessage/sections/sessionExpiredMessage.vue'
+
+import accessUnAuthorizedAdminComponent from './components/backoffice/administrateur/errorMessage/sections/accessUnAuthorized.vue'
+
+const administrateur = createApp(administrateurA)
+
+administrateur.use(adminRouter.routeConfig);
+
+administrateur.component('HeaderAdmin', HeaderAdminComponent)
+
+administrateur.component('FooterAdmin',  FooterAdminComponent)
+
+administrateur.component('authRequiredMessageAdmin', authRequiredMessageAdminComponent)
+
+administrateur.component('accessUnAuthorizedAdmin', accessUnAuthorizedAdminComponent)
+
+administrateur.component('sessionExpiredMessageAdmin', sessionExpiredMessageAdminComponent)
+
+administrateur.use(VueSweetalert2)
  
+administrateur.use(store)
+
+administrateur.mount('#administrateur')
+
+//Gestion de tous les composants publicateurs d'articles
+
+import * as pubRouter from './router/pubRouter';
+
+import publicateurA from './components/backoffice/publicateur/publicateur.vue'
+
+import HeaderPubComponent from './components/backoffice/publicateur/includes/HeaderPubComponent.vue'
+
+import FooterPubComponent from './components/backoffice/publicateur/includes/FooterComponent.vue'
+
+import authRequiredMessagePubComponent from './components/backoffice/publicateur/errorMessage/sections/authRequiredMessage.vue'
+
+import sessionExpiredMessagePubComponent from './components/backoffice/publicateur/errorMessage/sections/sessionExpiredMessage.vue'
+
+import accessUnAuthorizedPubComponent from './components/backoffice/publicateur/errorMessage/sections/accessUnAuthorized.vue'
+
+const publicateur = createApp(publicateurA)
+
+publicateur.use(pubRouter.routeConfig);
+
+publicateur.component('HeaderPub', HeaderPubComponent)
+
+publicateur.component('FooterPub',  FooterPubComponent)
+
+publicateur.component('authRequiredMessagePub', authRequiredMessagePubComponent)
+
+publicateur.component('accessUnAuthorizedPub', accessUnAuthorizedPubComponent)
+
+publicateur.component('sessionExpiredMessagePub', sessionExpiredMessagePubComponent)
+
+publicateur.use(VueSweetalert2)
+
+publicateur.use(store)
+
+publicateur.mount('#publicateur')
+
+//Verifier les connexions pour configurer les menus
+
+import in_second_menuF from './components/frontoffice/verify_auth/in_second_menu.vue'
+
+const in_second_menu = createApp(in_second_menuF)
+
+in_second_menu.use(store)
+
+in_second_menu.use(VueSweetalert2)
+
+in_second_menu.mount('#in_second_menu')
+
+import off_canvasF from './components/frontoffice/verify_auth/off_canvas.vue'
+
+const off_canvas = createApp(off_canvasF)
+
+off_canvas.use(store)
+
+off_canvas.use(VueSweetalert2)
+
+off_canvas.mount('#off_canvas')
+
+import in_first_menuF from './components/frontoffice/verify_auth/in_first_menu.vue'
+
+const in_first_menu = createApp(in_first_menuF)
+
+in_first_menu.use(store)
+
+in_first_menu.use(VueSweetalert2)
+
+in_first_menu.mount('#in_first_menu')
+
+//Importation des composants pour l'authentification
+
+import loginH from './components/authentication/login.vue'
+
+const login = createApp(loginH)
+
+login.use(VueSweetalert2)
+
+login.use(store)
+
+login.mount('#login')
+
+import forgot_passwordH from './components/authentication/forgot_password.vue'
+
+const forgot_password = createApp(forgot_passwordH)
+
+forgot_password.use(VueSweetalert2)
+
+forgot_password.use(store)
+
+forgot_password.mount('#forgot_password')
+
+import registerH from './components/authentication/register.vue'
+
+const register = createApp(registerH)
+
+register.use(VueSweetalert2)
+
+register.use(store)
+
+register.mount('#register')
