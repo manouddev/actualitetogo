@@ -132,9 +132,6 @@ home_page.use(VueSweetalert2);
 home_page.use(store);
 
 home_page.mount('#home_page')
-
-import 'froala-editor/js/plugins.pkgd.min.js';
-
 import 'froala-editor/css/froala_editor.pkgd.min.css';
 import 'froala-editor/css/froala_style.min.css';
  
