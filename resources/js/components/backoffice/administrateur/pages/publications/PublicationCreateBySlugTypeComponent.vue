@@ -129,108 +129,166 @@
                         <!-- Profile START -->
                         <div class="card border mb-4">
                             <div class="card-header border-bottom p-3">
-                                <h5 class="card-header-title mb-0">PUBLICATION {{publicationCreateBySlugTypeShowData.typePublication.name}}</h5>
+                                <div class="d-sm-flex justify-content-sm-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <h5 class="card-header-title mb-0">PUBLICATION {{publicationCreateBySlugTypeShowData.typePublication.name}}</h5>
+
+                                    </div>
+
+                                </div>
+
                             </div>
                             <div class="card-body" v-if="empty == 0">
 
-                                <div v-if="publicationStoreArticleFirstStepCreateMessage">
-                                    <div class="alert alert-danger"  role="alert">
-                                        {{ publicationStoreArticleFirstStepCreateMessage }}
+                                <div class="d-sm-flex justify-content-sm-between align-items-center mb-3" v-if="stepStoreArticleFirst == true">
+                                    <div class="d-flex align-items-center">
+                                        <h5 class="card-header-title mb-0">Les Informations de bases</h5>
+
+                                    </div>
+                                    <div class="d-flex mt-2 mt-sm-0">
+
+                                        <div class="btn btn-primary btn-round mb-0 " @click="buttonStepStoreArticleFirstToTwo" style="font-size: 25px">
+                                            <i  class="bi bi-arrow-right-short"></i>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <form>
-                                    <div class="row">
-                                        <div class="col-lg-12 mb-5">
-                                            <div class="row">
-                                                <div class="col-lg-12 mb-3" v-if="publicationStoreArticleFirstStepCreateErrors.title">
-                                                    <label class="form-label" >Titre de la publication</label>
-                                                    <QuillEditor theme="snow" v-model:content="title" contentType="html" />
-                                                    <div v-for="errorname in publicationStoreArticleFirstStepCreateErrors.title" :key="errorname" class="invalid-feedback">
-                                                        {{ errorname }}
+                                <div v-if="stepStoreArticleFirst == true">
+
+                                    <div v-if="publicationStoreArticleFirstStepCreateMessage">
+                                        <div class="alert alert-danger"  role="alert">
+                                            {{ publicationStoreArticleFirstStepCreateMessage }}
+                                        </div>
+                                    </div>
+
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-lg-12 mb-5">
+                                                <div class="row">
+                                                    <div class="col-lg-12 mb-3" v-if="publicationStoreArticleFirstStepCreateErrors.title">
+                                                        <label class="form-label" >Titre de la publication</label>
+                                                        <QuillEditor theme="snow" v-model:content="title" contentType="html" />
+                                                        <div v-for="errorname in publicationStoreArticleFirstStepCreateErrors.title" :key="errorname" class="invalid-feedback">
+                                                            {{ errorname }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12 mb-3" v-else>
+                                                        <label class="form-label" >Titre de la publication</label>
+                                                        <QuillEditor theme="snow" v-model:content="title" contentType="html" />
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-12 mb-3" v-else>
-                                                    <label class="form-label" >Titre de la publication</label>
-                                                    <QuillEditor theme="snow" v-model:content="title" contentType="html" />
+                                            </div>
 
+                                            <div class="col-lg-6 mt-3" v-if="publicationStoreArticleFirstStepCreateErrors.author">
+                                                <label class="form-label" >Ajouter un auteur</label>
+                                                <VueMultiselect
+                                                    v-model="author "
+                                                    :options="publicationCreateBySlugTypeShowData.authors"
+                                                    :close-on-select="true"
+                                                    :clear-on-select="false"
+                                                    placeholder="Choisir un auteur"
+                                                    label="authorName"
+                                                    track-by="authorName"
+                                                />
+                                                <div v-for="errorauthor in publicationStoreArticleFirstStepCreateErrors.author" :key="errorauthor" class="invalid-feedback">
+                                                    {{ errorauthor }}
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-lg-6 mt-3" v-if="publicationStoreArticleFirstStepCreateErrors.author">
-                                            <label class="form-label" >Ajouter un auteur</label>
-                                            <VueMultiselect
-                                                v-model="author "
-                                                :options="publicationCreateBySlugTypeShowData.authors"
-                                                :close-on-select="true"
-                                                :clear-on-select="false"
-                                                placeholder="Choisir un auteur"
-                                                label="authorName"
-                                                track-by="authorName"
-                                            />
-                                            <div v-for="errorauthor in publicationStoreArticleFirstStepCreateErrors.author" :key="errorauthor" class="invalid-feedback">
-                                                {{ errorauthor }}
+                                            <div class="col-lg-6 mt-3" v-else>
+                                                <label class="form-label" >Ajouter un auteur</label>
+                                                <VueMultiselect
+                                                    v-model="author "
+                                                    :options="publicationCreateBySlugTypeShowData.authors"
+                                                    :close-on-select="true"
+                                                    :clear-on-select="false"
+                                                    placeholder="Choisir un auteur"
+                                                    label="authorName"
+                                                    track-by="authorName"
+                                                />
                                             </div>
-                                        </div>
 
-                                        <div class="col-lg-6 mt-3" v-else>
-                                            <label class="form-label" >Ajouter un auteur</label>
-                                            <VueMultiselect
-                                                v-model="author "
-                                                :options="publicationCreateBySlugTypeShowData.authors"
-                                                :close-on-select="true"
-                                                :clear-on-select="false"
-                                                placeholder="Choisir un auteur"
-                                                label="authorName"
-                                                track-by="authorName"
-                                            />
-                                        </div>
-
-                                        <div class="col-lg-6 mt-3" v-if="publicationStoreArticleFirstStepCreateErrors.category">
-                                            <label class="form-label" >Ajouter des catégories</label>
-                                            <VueMultiselect
-                                                v-model="category"
-                                                :options="publicationCreateBySlugTypeShowData.categories"
-                                                :multiple="true"
-                                                :taggable="true"
-                                                @tag="addCategory"
-                                                :close-on-select="true"
-                                                :clear-on-select="false"
-                                                placeholder="Choisir des catégories"
-                                                label="name"
-                                                track-by="name"
-                                            />
-                                            <div v-for="errorcategory in publicationStoreArticleFirstStepCreateErrors.category" :key="errorcategory" class="invalid-feedback">
-                                                {{ errorcategory }}
+                                            <div class="col-lg-6 mt-3" v-if="publicationStoreArticleFirstStepCreateErrors.category">
+                                                <label class="form-label" >Ajouter des catégories</label>
+                                                <VueMultiselect
+                                                    v-model="category"
+                                                    :options="publicationCreateBySlugTypeShowData.categories"
+                                                    :multiple="true"
+                                                    :taggable="true"
+                                                    @tag="addCategory"
+                                                    :close-on-select="true"
+                                                    :clear-on-select="false"
+                                                    placeholder="Choisir des catégories"
+                                                    label="name"
+                                                    track-by="name"
+                                                />
+                                                <div v-for="errorcategory in publicationStoreArticleFirstStepCreateErrors.category" :key="errorcategory" class="invalid-feedback">
+                                                    {{ errorcategory }}
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-lg-6 mt-3" v-else>
-                                            <label class="form-label" >Ajouter des catégories</label>
-                                            <VueMultiselect
-                                                v-model="category"
-                                                :options="publicationCreateBySlugTypeShowData.categories"
-                                                :multiple="true"
-                                                :taggable="true"
-                                                @tag="addCategory"
-                                                :close-on-select="true"
-                                                :clear-on-select="false"
-                                                placeholder="Choisir des catégories"
-                                                label="name"
-                                                track-by="name"
-                                            />
-                                        </div>
+                                            <div class="col-lg-6 mt-3" v-else>
+                                                <label class="form-label" >Ajouter des catégories</label>
+                                                <VueMultiselect
+                                                    v-model="category"
+                                                    :options="publicationCreateBySlugTypeShowData.categories"
+                                                    :multiple="true"
+                                                    :taggable="true"
+                                                    @tag="addCategory"
+                                                    :close-on-select="true"
+                                                    :clear-on-select="false"
+                                                    placeholder="Choisir des catégories"
+                                                    label="name"
+                                                    track-by="name"
+                                                />
+                                            </div>
 
-                                        <div class="col-lg-12 mt-3"  v-if="publicationStoreArticleFirstStepCreateErrors.source">
-                                            <label class="form-label" >Ajouter le nom de la source</label>
-                                            <input  name="source" v-model="source" type="text" class="form-control" placeholder="Veuillez entrer le nom de la source de cette publication">
-                                        </div>
+                                            <div class="col-lg-12 mt-3"  v-if="publicationStoreArticleFirstStepCreateErrors.source">
+                                                <label class="form-label" >Ajouter le nom de la source</label>
+                                                <input  name="source" v-model="source" type="text" class="form-control" placeholder="Veuillez entrer le nom de la source de cette publication">
+                                            </div>
 
-                                        <div class="col-lg-12 mt-3"  v-else>
-                                            <label class="form-label" >Ajouter le nom de la source</label>
-                                            <input  name="source" v-model="source" type="text" class="form-control" placeholder="Veuillez entrer le nom de la source de cette publication">
+                                            <div class="col-lg-12 mt-3"  v-else>
+                                                <label class="form-label" >Ajouter le nom de la source</label>
+                                                <input  name="source" v-model="source" type="text" class="form-control" placeholder="Veuillez entrer le nom de la source de cette publication">
+                                            </div>
+
+
                                         </div>
+                                        <div class="d-flex justify-content-end mt-4" v-if="loadingPublicationStoreArticleFirstStepCreate == false">
+                                            <button type="button" @click="cancelArticleFirst" class="btn btn-danger border-0 me-2">Annuler</button>
+                                            <button type="submit"  @click="publicationStoreArticleFirstStep" class="btn btn-primary">Enregistrer</button>
+                                        </div>
+                                        <div class="d-flex justify-content-end mt-4" v-else>
+                                            <button type="button" disabled class="btn btn-success border-0 me-2">
+                                                <i  style="color: #fff" class="fa fa-spinner fa-spin fa-1x fa-fw"></i>
+                                                <span class="sr-only">Loading...</span>En cours de sauvegarde...</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="d-sm-flex justify-content-sm-between align-items-center mb-3" v-if="stepStoreArticleTwo == true">
+                                    <div class="d-flex align-items-center">
+                                        <h5 class="card-header-title mb-0">Redigez le contenu de la publication</h5>
+
+                                    </div>
+                                    <div class="d-flex mt-2 mt-sm-0">
+                                        <div class="btn btn-danger btn-round mb-0 " @click="buttonStepStoreArticleTwoToFirst" style="font-size: 25px">
+                                            <i  class="bi bi-arrow-left-short"></i>
+                                        </div> &nbsp;
+                                        <div class="btn btn-primary btn-round mb-0 " @click="buttonStepStoreArticleTwoToThree" style="font-size: 25px">
+                                            <i  class="bi bi-arrow-right-short"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div v-if="stepStoreArticleTwo == true">
+
+                                    <div class="col-lg-12 mt-3 mb-2" >
+                                        <QuillEditor theme="snow"   toolbar="full" v-model:content="content" contentType="html" />
+                                    </div>
+
+                                    <form>
+
 
                                         <div class="col-lg-12 mt-3" v-if="publicationStoreArticleFirstStepCreateErrors.tag">
                                             <label class="form-label" >Ajouter des tags</label>
@@ -251,7 +309,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-12 mt-3" v-else>
+                                        <div class="col-lg-12 mt-3  " v-else>
                                             <label class="form-label" >Ajouter des tags</label>
                                             <VueMultiselect
                                                 v-model="tag"
@@ -266,20 +324,37 @@
                                                 track-by="name"
                                             />
                                         </div>
-                                        <div class="col-lg-12 mt-3 mb-5" >
-                                            <froala :tag="'textarea'" :config="config"></froala>
+
+                                        <div class="d-flex justify-content-end mt-4" v-if="loadingPublicationStoreArticleTwoStepCreate == false">
+                                            <button type="button" @click="cancelArticleTwo" class="btn btn-danger border-0 me-2">Annuler</button>
+                                            <button type="submit"  @click="publicationStoreArticleTwoStep" class="btn btn-primary">Enregistrer</button>
                                         </div>
+                                        <div class="d-flex justify-content-end mt-4" v-else>
+                                            <button type="button" disabled class="btn btn-success border-0 me-2">
+                                                <i  style="color: #fff" class="fa fa-spinner fa-spin fa-1x fa-fw"></i>
+                                                <span class="sr-only">Loading...</span>En cours de sauvegarde...</button>
+                                        </div>
+                                    </form>
+
+
+                                </div>
+                                <div class="d-sm-flex justify-content-sm-between align-items-center" v-if="stepStoreArticleThree == true">
+                                    <div class="d-flex align-items-center">
+                                        <h5 class="card-header-title mb-0">Joindre des fichiers</h5>
                                     </div>
-                                    <div class="d-flex justify-content-end mt-4" v-if="loadingPublicationStoreArticleFirstStepCreate == false">
-                                        <button type="button" @click="cancelArticleFirst" class="btn btn-danger border-0 me-2">Annuler</button>
-                                        <button type="submit"  @click="publicationStoreArticleFirstStep" class="btn btn-primary">Enregistrer</button>
+                                    <div class="d-flex mt-2 mt-sm-0">
+                                        <div class="btn btn-danger btn-round mb-0 " @click="buttonStepStoreArticleThreeToTwo " style="font-size: 25px">
+                                            <i  class="bi bi-arrow-left-short"></i>
+                                        </div>
+
                                     </div>
-                                    <div class="d-flex justify-content-end mt-4" v-else>
-                                        <button type="button" disabled class="btn btn-success border-0 me-2">
-                                            <i  style="color: #fff" class="fa fa-spinner fa-spin fa-1x fa-fw"></i>
-                                            <span class="sr-only">Loading...</span>En cours de sauvegarde...</button>
-                                    </div>
-                                </form>
+                                </div>
+
+                                <div v-if="stepStoreArticleThree == true">
+                                    <form>
+
+                                    </form>
+                                </div>
                             </div>
 
                             <div class="card-body p-3 pb-0" v-else-if="empty == 1">
@@ -577,7 +652,6 @@ import moment from 'moment'
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import VueMultiselect from 'vue-multiselect';
-import { ref } from 'vue'
 
 export default {
 
@@ -649,10 +723,19 @@ export default {
             showPswC: false,
             loadingPublicationStoreInfoAlertAnnonceCreate: false,
             loadingPublicationStoreArticleFirstStepCreate: false,
+            loadingPublicationStoreArticleTwoStepCreate: false,
             config: {
-                // Ajoutez ici les options de configuration de Froala
+                events: {
+                    initialized: function () {
+                    console.log('initialized')
+                    }
+                }
             },
-            content: 'Edit Your Content Here!'
+
+            content: 'Redigez le contenu de votre publication!',
+            stepStoreArticleFirst: true,
+            stepStoreArticleTwo: false,
+            stepStoreArticleThree: false,
         }
     },
     computed: {
@@ -766,6 +849,46 @@ export default {
           actionsPublicationStoreInfoAlertAnnonceDataRequest:'publicationStoreInfoAlertAnnonceDataRequest',
           actionsPublicationStoreArticleFirstStepDataRequest:'publicationStoreArticleFirstStepDataRequest',
         }),
+
+        buttonStepStoreArticleFirstToTwo ( ){
+
+            this.stepStoreArticleFirst = false
+
+            this.stepStoreArticleTwo = true
+
+            this.stepStoreArticleThree = false
+
+        },
+
+        buttonStepStoreArticleTwoToThree ( ){
+
+            this.stepStoreArticleFirst = false
+
+            this.stepStoreArticleTwo = false
+
+            this.stepStoreArticleThree = true
+
+        },
+
+        buttonStepStoreArticleThreeToTwo ( ){
+
+            this.stepStoreArticleFirst = false
+
+            this.stepStoreArticleTwo = true
+
+            this.stepStoreArticleThree = false
+
+        },
+
+        buttonStepStoreArticleTwoToFirst ( ){
+
+            this.stepStoreArticleFirst = true
+
+            this.stepStoreArticleTwo = false
+
+            this.stepStoreArticleThree = false
+
+        },
 
         async handleSelectionSearchByStatus(event ){
 
@@ -1485,6 +1608,14 @@ export default {
 
         },
 
+         cancelArticleTwo(){
+
+            this.content = null
+            this.tag = null
+
+
+        },
+
         async addCategory (newCategory) {
             const category = {
                 name: newCategory,
@@ -1517,6 +1648,10 @@ export default {
             }
 
         },
+
+         async publicationStoreArticleFirstStep(){
+
+         },
 
 
         async publicationStoreArticleFirstStep(){
