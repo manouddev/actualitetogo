@@ -27,7 +27,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="pagesMenu" style="font-size: 0.9375rem" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-pencil me-1"></i>Mes publications</a>
                             <ul class="dropdown-menu" aria-labelledby="pagesMenu">
-                                <li> <router-link class="dropdown-item" to="#">Mes Tags</router-link></li>
+                                <li> <router-link class="dropdown-item" :to="{name: 'pub.tags'}">Mes Tags</router-link></li>
                                 <li> <a class="dropdown-item" href="#">Toutes mes publications</a></li>
                                 <li> <a class="dropdown-item" href="#">Brouillons</a></li>
                                 <li> <router-link class="dropdown-item" to="#">Créer une publication</router-link></li>
@@ -37,7 +37,7 @@
 
                         <li class="nav-item"><router-link class="nav-link" style="font-size: 0.9375rem" to="#"><i class="bi bi-image me-1"></i>Mes fichiers</router-link></li>
 
-                        <li class="nav-item"><router-link class="nav-link" style="font-size: 0.9375rem"  to="#"><i class="bi bi-user me-1"></i>Mes auteurs</router-link></li>
+                        <li class="nav-item"><router-link class="nav-link" style="font-size: 0.9375rem"  :to="{name: 'pub.authors'}"><i class="bi bi-user me-1"></i>Mes auteurs</router-link></li>
                         
                     </ul>
 

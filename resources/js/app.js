@@ -107,7 +107,39 @@ contact.use(VueSweetalert2);
 contact.use(store);
 
 contact.mount('#contact')
+
+//Importation du Composant de contact à afficher sur la page d'accueil
+
+import ChangeProgramF from './components/frontoffice/home_page/changeProgram.vue'
+
+const changeProgram = createApp(ChangeProgramF)
+
+changeProgram.use(VueSweetalert2);
+
+changeProgram.use(store);
+
+changeProgram.mount('#changeProgram')
+
+
+//Importation du Composant des articles à afficher sur la page d'accueil
+
+import HomePageF from './components/frontoffice/home_page/home_page.vue'
+
+const home_page = createApp(HomePageF)
+
+home_page.use(VueSweetalert2);
+
+home_page.use(store);
+
+home_page.mount('#home_page')
+
+import 'froala-editor/js/plugins.pkgd.min.js';
+
+import 'froala-editor/css/froala_editor.pkgd.min.css';
+import 'froala-editor/css/froala_style.min.css';
  
+import VueFroala from 'vue-froala-wysiwyg';
+
 //Gestion de tous les composants administrateurs
 
 import * as adminRouter from './router/adminRouter';
@@ -139,6 +171,8 @@ administrateur.component('accessUnAuthorizedAdmin', accessUnAuthorizedAdminCompo
 administrateur.component('sessionExpiredMessageAdmin', sessionExpiredMessageAdminComponent)
 
 administrateur.use(VueSweetalert2)
+
+administrateur.use(VueFroala)
 
 administrateur.use(store)
 

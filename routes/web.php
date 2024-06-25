@@ -41,7 +41,25 @@ Route::get('/auth/forgot_password', [ForgotPasswordController::class, 'forgot_pa
 //Les routes pour les administrateurs
 
 Route::get('/admin/dashboard',[WebRouteController::class, 'administrateur']);
+
+Route::get('/admin/newsletters',[WebRouteController::class, 'administrateur']);
+
+Route::get('/admin/tags',[WebRouteController::class, 'administrateur']);
+
+Route::get('/admin/category',[WebRouteController::class, 'administrateur']);
+
+Route::get('/admin/authors',[WebRouteController::class, 'administrateur']);
+
+Route::get('/admin/publications/create',[WebRouteController::class, 'administrateur']);
+
+Route::get('/admin/publications/create',[WebRouteController::class, 'administrateur']);
  
+Route::get('/admin/publications/create/{slug}/type_publications',[WebRouteController::class, 'administrateur']);
+
 //Les routes pour les publicateurs
 
 Route::get('/pub/dashboard',[WebRouteController::class, 'publicateur']);
+
+Route::get('/pub/tags',[WebRouteController::class, 'publicateur']);
+ 
+Route::get('/pub/authors',[WebRouteController::class, 'publicateur']);
