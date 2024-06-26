@@ -11,6 +11,8 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
+        "@canopassoftware/vue-file-upload": "^1.0.8",
+        "@dafcoe/vue-file-uploader": "^0.0.4",
         "@splidejs/vue-splide": "^0.6.12",
         "@vitejs/plugin-vue": "^5.0.2",
         "@vueup/vue-quill": "^1.2.0",

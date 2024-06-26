@@ -135,6 +135,11 @@ home_page.mount('#home_page')
 
 //Gestion de tous les composants administrateurs
 
+// using esModules
+
+import VueFileUploader from '@dafcoe/vue-file-uploader'
+import '@dafcoe/vue-file-uploader/style.css'
+
 import * as adminRouter from './router/adminRouter';
 
 import administrateurA from './components/backoffice/administrateur/administrateur.vue'
@@ -166,6 +171,8 @@ administrateur.component('sessionExpiredMessageAdmin', sessionExpiredMessageAdmi
 administrateur.use(VueSweetalert2)
 
 
+administrateur.use(VueFileUploader)
+ 
 administrateur.use(store)
 
 administrateur.mount('#administrateur')

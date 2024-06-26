@@ -352,7 +352,15 @@
 
                                 <div v-if="stepStoreArticleThree == true">
                                     <form>
-
+                                        <div class="col-lg-12 mt-3  " >
+                                            <div  >
+                                                <VueFileUploader
+                                                    upload-url="http://www.file-host.test"
+                                                    heading="Joindre des fichiers à votre publications "
+                                                    label="vous pouvez déposer plusieurs fichiers ici."
+                                                />
+                                              </div>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -646,7 +654,7 @@
         </div>
     </div>
 </template>
-<script>
+<script >
 import { mapGetters, mapActions} from "vuex";
 import moment from 'moment'
 import { QuillEditor } from '@vueup/vue-quill'
@@ -656,7 +664,7 @@ import VueMultiselect from 'vue-multiselect';
 export default {
 
     components: {
-        QuillEditor, VueMultiselect
+        QuillEditor, VueMultiselect, 
     },
 
     data () {
@@ -736,6 +744,8 @@ export default {
             stepStoreArticleFirst: true,
             stepStoreArticleTwo: false,
             stepStoreArticleThree: false,
+
+             
         }
     },
     computed: {
@@ -1748,7 +1758,7 @@ export default {
             }
 
         },
-
+ 
     },
     mounted() {
 
